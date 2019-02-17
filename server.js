@@ -188,7 +188,7 @@ var transporter = nodeMailer.createTransport({
 
 app.post('/send-newordertoproveedortest', function (req , res) {
 
-    enviarami(req.body);
+  
     console.log(JSON.stringify(req.body));
     bode = JSON.parse(JSON.stringify(req.body.usuariobuu));
     console.log(bode);
@@ -241,34 +241,7 @@ app.post('/send-newordertoproveedortest', function (req , res) {
 
 });
 
-enviarami(error)
-{
-    let mailOptions = {
-        from: 'info@buustores.com', // sender address
-        to: 'cruz.juanjose@gmail.com', // list of receivers
-        subject: 'error en los correos', // Subject line
-        html: error // html body
-    };
 
-    transporter.verify(function(error, success) {
-        if (error) {
-            console.log(error);
-            
-            
-        } else {
-
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  
-                    
-                }
-                console.log('Message %s sent: %s', info.messageId, info.response);
-               
-            });
-
-        }
-    });
-}
 
 
 app.post('/send-updateshipping', function (req , res) {
@@ -313,7 +286,7 @@ app.post('/send-updateshipping', function (req , res) {
             }
         });
 
-    });
+    }); 
 
 
 });
