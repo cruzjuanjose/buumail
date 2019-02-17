@@ -4,6 +4,8 @@ var express = require('express'),
     bodyParser = require('body-parser');
 var handlebars = require('handlebars');
 var fs = require('fs');
+var CONFIG_port         = process.env.PORT  || '3000';
+
 
 ReS = function(res, data, code){ // Success Web Response
     let send_data = {success:true};
@@ -51,14 +53,18 @@ var transporter = nodeMailer.createTransport({
         pass: 'Linda*09876'
     }
 }); */
+const port = normalizePort(CONFIG_port || '3000');
+
 
 
     var app = express();
+    app.set('trust proxy', true);
+app.set('port', port);
     app.set('view engine', 'ejs');
     app.use(express.static('public'));
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
-    var port = 3001;
+   // var port = 3001;
     app.get('/', function (req, res) {
       res.render('index');
     });
@@ -401,7 +407,22 @@ app.post('/send-neworderproveedormsg', function (req , res) {
     
     });
     
-
+    function normalizePort(val) {
+        const port = parseInt(val, 10);
+      
+        if (isNaN(port)) {
+          // named pipe
+          return val;
+        }
+      
+        if (port >= 0) {
+          // port number
+          return port;
+        }
+      
+        return false;
+      }
+      
 
 
           app.listen(port, function(){
