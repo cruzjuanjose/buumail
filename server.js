@@ -306,7 +306,7 @@ app.post('/send-neworderproveedormsg', function (req , res) {
     readHTMLFile(__dirname + '/views/Emailstemplates/pedidostore.html', function(err, html) {
         var template = handlebars.compile(html);
         var replacements = {
-            username: req.body.firstname +' '+  + req.body.lastname,
+            username: req.body.customer_firstname,
             storename:  req.body.storename,
             pedido: req.body.pedido,
             Nickname: req.body.Nickname,
