@@ -302,7 +302,7 @@ app.post('/send-updateshipping', function (req , res) {
 
 
 app.post('/send-neworderproveedormsg', function (req , res) {
-
+console.log('enviando al proveedior que tiene un pedidio nuevo');
     readHTMLFile(__dirname + '/views/Emailstemplates/pedidostore.html', function(err, html) {
         var template = handlebars.compile(html);
         var replacements = {
