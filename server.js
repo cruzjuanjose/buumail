@@ -108,6 +108,49 @@ app.set('port', port);
  })   ;
 
 
+
+ app.post('/send-activateacountemailforautomaticorder', function (req, res) {
+
+    readHTMLFile(__dirname + '/views/Emailstemplates/newcustomerbyautomaticorder.html', function(err, html) {
+        var template = handlebars.compile(html);
+        var replacements = {
+            usuariobuu: req.body.usuariobuu,
+            linkdeactivacion: req.body.linkactivacion,
+            nombreusuariobuu: req.body.nombreusuariobuu,
+            nombrestore: req.body.nombrestore
+
+        };
+        var htmlToSend = template(replacements);
+        let mailOptions = {
+            from: 'info@buustores.com', // sender address
+            to: req.body.email, // list of receivers
+            subject: req.body.subject, // Subject line
+            html: htmlToSend // html body
+        };
+
+        transporter.verify(function(error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                    return ReS(res, {descripcion: 'Correo enviado' });
+                });
+
+            }
+        });
+
+    });
+
+
+});
+
+
+
   app.post('/send-activateacountemail', function (req, res) {
 
       readHTMLFile(__dirname + '/views/Emailstemplates/activateaccount.html', function(err, html) {
@@ -259,9 +302,11 @@ app.post('/send-updateshipping', function (req , res) {
             name: req.body.firstname,
             lastname: req.body.lastname,
             storename:  req.body.storename,
-            orderid: req.body.pedido,
-            nickname: req.body.Nickname,
+            orderid: req.body.orderid,
+            nickname: req.body.nickname,
             address1: req.body.address1,
+            address2: req.body.address2,
+            postcode: req.body.postcode,
             subtotal: req.body.subtotal,
             mensaje: req.body.mensaje,
             arriveddate: req.body.arriveddate,
