@@ -115,7 +115,7 @@ app.set('port', port);
         var template = handlebars.compile(html);
         var replacements = {
             usuariobuu: req.body.usuariobuu,
-            linkdeactivacion: req.body.linkactivacion,
+            linkdeactivacion: req.body.linkdeactivacion,
             nombreusuariobuu: req.body.nombreusuariobuu,
             nombrestore: req.body.nombrestore
 
