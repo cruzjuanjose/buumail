@@ -110,7 +110,6 @@ app.set('port', port);
 
 
  app.post('/send-activateacountemailforautomaticorder', function (req, res) {
-
     readHTMLFile(__dirname + '/views/Emailstemplates/newcustomerbyautomaticorder.html', function(err, html) {
         var template = handlebars.compile(html);
         var replacements = {
@@ -118,7 +117,6 @@ app.set('port', port);
             linkdeactivacion: req.body.linkdeactivacion,
             nombreusuariobuu: req.body.nombreusuariobuu,
             nombrestore: req.body.nombrestore
-
         };
         var htmlToSend = template(replacements);
         let mailOptions = {
@@ -127,12 +125,10 @@ app.set('port', port);
             subject: req.body.subject, // Subject line
             html: htmlToSend // html body
         };
-
         transporter.verify(function(error, success) {
             if (error) {
                 console.log(error);
             } else {
-
                 transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
                         return console.log(error);
@@ -140,7 +136,6 @@ app.set('port', port);
                     console.log('Message %s sent: %s', info.messageId, info.response);
                     return ReS(res, {descripcion: 'Correo enviado' });
                 });
-
             }
         });
 
