@@ -250,7 +250,8 @@ app.post('/send-newordertoproveedortest', function (req , res) {
             detalles: bode.detalles,
             tracking :bode.tracking,
             vcuerpo: bode.vcuerpo,
-            vheader: bode.vheader
+            vheader: bode.vheader,
+            token: bode.token
         };
         console.log(replacements);
         var htmlToSend = template(replacements);
