@@ -41,7 +41,7 @@ var readHTMLFile = function(path, callback) {
         rejectUnauthorized:false
     },
     auth: {
-        user: 'info@buustores.com',
+        user: 'notificaciones@buustores.com',
         pass: 'W3eb02018'
     }
 });
