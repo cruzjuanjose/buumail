@@ -388,6 +388,48 @@ console.log('enviando al proveedior que tiene un pedidio nuevo');
 });
 
 
+
+app.post('/send-finishdelivery', function (req , res) {
+    console.log('enviando al proveedior que su paquete finalizo');
+        readHTMLFile(__dirname + '/views/Emailstemplates/deliveryentregado.html', function(err, html) {
+            var template = handlebars.compile(html);
+            var replacements = {
+                idtracking: req.body.idtrcking,
+                entregadoa:  req.body.entregadoa,
+                comentarios: req.body.comentarios,
+                fechaentrega: req.body.fechaentrega,
+                notas: req.body.notas
+            };
+            var htmlToSend = template(replacements);
+            let mailOptions = {
+                from: 'info@buustores.com', // sender address
+                to: req.body.to , // list of receivers
+                subject: req.body.subject, // Subject line
+                html: htmlToSend // html body
+            };
+    
+            transporter.verify(function(error, success) {
+                if (error) {
+                    console.log(error);
+                } else {
+    
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        console.log('Message %s sent: %s', info.messageId, info.response);
+                        return ReS(res, {descripcion: 'Correo enviado' });
+                    });
+    
+                }
+            });
+    
+        });
+    
+    
+    });
+    
+
     app.post('/send-email', function (req, res) {
 
 
@@ -408,6 +450,11 @@ console.log('enviando al proveedior que tiene un pedidio nuevo');
               res.render('index');
           });
       });
+
+
+
+
+
 
 
 
