@@ -398,11 +398,12 @@ app.post('/send-finishdelivery', function (req , res) {
                 entregadoa:  req.body.entregadoa,
                 comentarios: req.body.comentarios,
                 fechaentrega: req.body.fechaentrega,
-                notas: req.body.notas
+                notas: req.body.notas,
+                montocobrado: req.body.monto
             };
             var htmlToSend = template(replacements);
             let mailOptions = {
-                from: 'info@buustores.com', // sender address
+                from: 'notificaciones@buustores.com', // sender address
                 to: req.body.to , // list of receivers
                 subject: req.body.subject, // Subject line
                 html: htmlToSend // html body
