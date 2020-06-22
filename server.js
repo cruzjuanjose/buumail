@@ -431,6 +431,50 @@ app.post('/send-finishdelivery', function (req , res) {
     });
     
 
+    app.post('/send-deliveryprogramado', function (req , res) {
+        console.log('enviando al proveedor que su delivery esta programado');
+            readHTMLFile(__dirname + '/views/Emailstemplates/deliveryprogramado.html', function(err, html) {
+                var template = handlebars.compile(html);
+                var replacements = {
+                    idtracking: req.body.idtrcking,
+                    fecharecoleccion:  req.body.fecharecoleccion,
+                    para: req.body.para,
+                    direccion: req.body.direccion,
+                    cod: req.body.cod,
+                    notas: req.body.notas
+                };
+                var htmlToSend = template(replacements);
+                let mailOptions = {
+                    from: 'notificaciones@buustores.com', // sender address
+                    to: req.body.to , // list of receivers
+                    subject: req.body.subject, // Subject line
+                    html: htmlToSend // html body
+                };
+        
+                transporter.verify(function(error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+        
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                return console.log(error);
+                            }
+                            console.log('Message %s sent: %s', info.messageId, info.response);
+                            return ReS(res, {descripcion: 'Correo enviado' });
+                        });
+        
+                    }
+                });
+        
+            });
+        
+        
+        });
+        
+
+
+
     app.post('/send-email', function (req, res) {
 
 
