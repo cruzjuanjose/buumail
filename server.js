@@ -42,7 +42,7 @@ var readHTMLFile = function(path, callback) {
     },
     auth: {
         user: 'notificaciones@buustores.com',
-        pass: 'W3eb02018'
+        pass: 'buunotificaciones*202020202'
     }
 });
  
