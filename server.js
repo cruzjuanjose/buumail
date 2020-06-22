@@ -390,42 +390,50 @@ console.log('enviando al proveedior que tiene un pedidio nuevo');
 
 
 app.post('/send-finishdelivery', function (req , res) {
+
     console.log('enviando al proveedior que su paquete finalizo');
-        readHTMLFile(__dirname + '/views/Emailstemplates/deliveryentregado.html', function(err, html) {
-            var template = handlebars.compile(html);
-            var replacements = {
-                idtracking: req.body.idtrcking,
-                entregadoa:  req.body.entregadoa,
-                comentarios: req.body.comentarios,
-                fechaentrega: req.body.fechaentrega,
-                notas: req.body.notas,
-                montocobrado: req.body.monto
-            };
-            var htmlToSend = template(replacements);
-            let mailOptions = {
-                from: 'notificaciones@buustores.com', // sender address
-                to: req.body.to , // list of receivers
-                subject: req.body.subject, // Subject line
-                html: htmlToSend // html body
-            };
-    
-            transporter.verify(function(error, success) {
-                if (error) {
-                    console.log(error);
-                } else {
-    
-                    transporter.sendMail(mailOptions, (error, info) => {
-                        if (error) {
-                            return console.log(error);
-                        }
-                        console.log('Message %s sent: %s', info.messageId, info.response);
-                        return ReS(res, {descripcion: 'Correo enviado' });
-                    });
-    
-                }
-            });
-    
+if (req.header.buu_auth === '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
+    readHTMLFile(__dirname + '/views/Emailstemplates/deliveryentregado.html', function(err, html) {
+        var template = handlebars.compile(html);
+        var replacements = {
+            idtracking: req.body.idtrcking,
+            entregadoa:  req.body.entregadoa,
+            comentarios: req.body.comentarios,
+            fechaentrega: req.body.fechaentrega,
+            notas: req.body.notas,
+            montocobrado: req.body.monto
+        };
+        var htmlToSend = template(replacements);
+        let mailOptions = {
+            from: 'notificaciones@buustores.com', // sender address
+            to: req.body.to , // list of receivers
+            subject: req.body.subject, // Subject line
+            html: htmlToSend // html body
+        };
+
+        transporter.verify(function(error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                    return ReS(res, {descripcion: 'Correo enviado' });
+                });
+
+            }
         });
+
+    });
+} else{
+
+    ReS(res,{status:'No autorizado'},401);
+}
+
+    
     
     
     });
@@ -433,42 +441,46 @@ app.post('/send-finishdelivery', function (req , res) {
 
     app.post('/send-deliveryprogramado', function (req , res) {
         console.log('enviando al proveedor que su delivery esta programado');
-            readHTMLFile(__dirname + '/views/Emailstemplates/deliveryprogramado.html', function(err, html) {
-                var template = handlebars.compile(html);
-                var replacements = {
-                    idtracking: req.body.idtrcking,
-                    fecharecoleccion:  req.body.fecharecoleccion,
-                    para: req.body.para,
-                    direccion: req.body.direccion,
-                    cod: req.body.cod,
-                    notas: req.body.notas
-                };
-                var htmlToSend = template(replacements);
-                let mailOptions = {
-                    from: 'notificaciones@buustores.com', // sender address
-                    to: req.body.to , // list of receivers
-                    subject: req.body.subject, // Subject line
-                    html: htmlToSend // html body
-                };
-        
-                transporter.verify(function(error, success) {
-                    if (error) {
-                        console.log(error);
-                    } else {
-        
-                        transporter.sendMail(mailOptions, (error, info) => {
-                            if (error) {
-                                return console.log(error);
-                            }
-                            console.log('Message %s sent: %s', info.messageId, info.response);
-                            return ReS(res, {descripcion: 'Correo enviado' });
+        console.log(req.header('buu_auth') );
+        if (req.header('buu_auth') === '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
+                        readHTMLFile(__dirname + '/views/Emailstemplates/deliveryprogramado.html', function(err, html) {
+                            var template = handlebars.compile(html);
+                            var replacements = {
+                                idtracking: req.body.idtrcking,
+                                fecharecoleccion:  req.body.fecharecoleccion,
+                                para: req.body.para,
+                                direccion: req.body.direccion,
+                                cod: req.body.cod,
+                                notas: req.body.notas
+                            };
+                            var htmlToSend = template(replacements);
+                            let mailOptions = {
+                                from: 'notificaciones@buustores.com', // sender address
+                                to: req.body.to , // list of receivers
+                                subject: req.body.subject, // Subject line
+                                html: htmlToSend // html body
+                            };
+                    
+                            transporter.verify(function(error, success) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                    
+                                    transporter.sendMail(mailOptions, (error, info) => {
+                                        if (error) {
+                                            return console.log(error);
+                                        }
+                                        console.log('Message %s sent: %s', info.messageId, info.response);
+                                        return ReS(res, {descripcion: 'Correo enviado' });
+                                    });
+                    
+                                }
+                            });
+                    
                         });
-        
-                    }
-                });
-        
-            });
-        
+         } else  {
+                        ReS(res,{status:'No autorizado'},401);
+        }
         
         });
         
