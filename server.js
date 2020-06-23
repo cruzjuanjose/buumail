@@ -392,7 +392,7 @@ console.log('enviando al proveedior que tiene un pedidio nuevo');
 app.post('/send-finishdelivery', function (req , res) {
 
     console.log('enviando al proveedior que su paquete finalizo');
-if (req.header.buu_auth === '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
+if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
     readHTMLFile(__dirname + '/views/Emailstemplates/deliveryentregado.html', function(err, html) {
         var template = handlebars.compile(html);
         var replacements = {
