@@ -391,7 +391,7 @@ console.log('enviando al proveedior que tiene un pedidio nuevo');
 
 app.post('/send-finishdelivery', function (req , res) {
 
-    console.log('enviando al proveedior que su paquete finalizo');
+    console.log('enviando al proveedior que su paquete finalizo: '+ req.body.to);
 if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
     readHTMLFile(__dirname + '/views/Emailstemplates/deliveryentregado.html', function(err, html) {
         var template = handlebars.compile(html);
@@ -440,9 +440,10 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
     
 
     app.post('/send-deliveryprogramado', function (req , res) {
-        console.log('enviando al proveedor que su delivery esta programado');
+        console.log('enviando al proveedor que su delivery esta programado' + req.body.to);
         console.log(req.header('buu_auth') );
         if (req.header('buu_auth') === '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkjqwqwkqwkjd'){
+            console.log('Autorizado');
                         readHTMLFile(__dirname + '/views/Emailstemplates/deliveryprogramado.html', function(err, html) {
                             var template = handlebars.compile(html);
                             var replacements = {
