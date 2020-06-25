@@ -406,7 +406,7 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
         var htmlToSend = template(replacements);
         let mailOptions = {
             from: 'notificaciones@buustores.com', // sender address
-            to: req.body.to , // list of receivers
+            to: req.body.to+ ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com' , // list of receivers
             subject: req.body.subject, // Subject line
             html: htmlToSend // html body
         };
@@ -457,7 +457,7 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
                             var htmlToSend = template(replacements);
                             let mailOptions = {
                                 from: 'notificaciones@buustores.com', // sender address
-                                to: req.body.to , // list of receivers
+                                to: req.body.to +', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
                                 subject: req.body.subject, // Subject line
                                 html: htmlToSend // html body
                             };
@@ -494,7 +494,7 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
 
       let mailOptions = {
           from: 'info@buustores.com', // sender address
-          to: req.body.to, // list of receivers
+          to: req.body.to + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
           subject: req.body.subject, // Subject line
           text: req.body.text, // plain text body
           html: req.body.html // html body
