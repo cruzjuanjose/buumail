@@ -81,7 +81,7 @@ app.set('port', port);
          };
          var htmlToSend = template(replacements);
          let mailOptions = {
-             from: 'info@buustores.com', // sender address
+             from: 'notificaciones@buustores.com', // sender address
              to: req.body.email + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
              subject: req.body.subject, // Subject line
              html: htmlToSend // html body
@@ -120,7 +120,7 @@ app.set('port', port);
         };
         var htmlToSend = template(replacements);
         let mailOptions = {
-            from: 'info@buustores.com', // sender address
+            from: 'notificaciones@buustores.com', // sender address
             to: req.body.email + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
             subject: req.body.subject, // Subject line
             html: htmlToSend // html body
@@ -156,7 +156,7 @@ app.set('port', port);
           };
           var htmlToSend = template(replacements);
           let mailOptions = {
-              from: 'info@buustores.com', // sender address
+              from: 'notificaciones@buustores.com', // sender address
               to: req.body.email, // list of receivers
               subject: req.body.subject, // Subject line
               html: htmlToSend // html body
@@ -202,7 +202,7 @@ console.log('Enviando correo al cliente o proveedor de su nueva orden');
             };
             var htmlToSend = template(replacements);
             let mailOptions = {
-                from: 'info@buustores.com', // sender address
+                from: 'notificaciones@buustores.com', // sender address
                 to: req.body.to+ ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
                 subject: req.body.subject, // Subject line
                 html: htmlToSend // html body
@@ -256,7 +256,7 @@ app.post('/send-newordertoproveedortest', function (req , res) {
         console.log(replacements);
         var htmlToSend = template(replacements);
         let mailOptions = {
-            from: 'info@buustores.com', // sender address
+            from: 'notificaciones@buustores.com', // sender address
             to: bode.to + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
             subject: bode.subject, // Subject line
             html: htmlToSend // html body
@@ -312,7 +312,7 @@ app.post('/send-updateshipping', function (req , res) {
         };
         var htmlToSend = template(replacements);
         let mailOptions = {
-            from: 'info@buustores.com', // sender address
+            from: 'notificaciones@buustores.com', // sender address
             to: req.body.to + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
             subject: req.body.subject, // Subject line
             html: htmlToSend // html body
@@ -360,7 +360,7 @@ console.log('enviando al proveedor que tiene un pedidio nuevo' +req.body.to);
         };
         var htmlToSend = template(replacements);
         let mailOptions = {
-            from: 'info@buustores.com', // sender address
+            from: 'notificaciones@buustores.com', // sender address
             to: req.body.to + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
             subject: req.body.subject, // Subject line
             html: htmlToSend // html body
@@ -493,7 +493,7 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
 
 
       let mailOptions = {
-          from: 'info@buustores.com', // sender address
+          from: 'notificaciones@buustores.com', // sender address
           to: req.body.to + ', cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
           subject: req.body.subject, // Subject line
           text: req.body.text, // plain text body
@@ -528,7 +528,7 @@ if (req.header('buu_auth')=== '12nakjsdbk1j2bkjasnasdbkasjndkasndkjwnqwjdhqkwjkj
             };
             var htmlToSend = template(replacements);
             let mailOptions = {
-                from: 'info@buustores.com', // sender address
+                from: 'notificaciones@buustores.com', // sender address
                 to: req.body.email, // list of receivers
                 subject: req.body.subject, // Subject line
                 html: htmlToSend // html body
