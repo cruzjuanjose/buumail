@@ -107,6 +107,43 @@ app.set('port', port);
 
  })   ;
 
+ app.post('/rpt_cuadrediario', function (req, res) {
+
+    readHTMLFile(__dirname + '/views/Emailstemplates/Rpt_cuadrediariodelivery.html', function(err, html) {
+        var template = handlebars.compile(html);
+        var replacements = {
+            newpass: req.body.linkactivacion,
+            name: req.body.usuariobuu,
+            detalles: req.body.detalles
+        };
+        var htmlToSend = template(replacements);
+        let mailOptions = {
+            from: 'notificaciones@buustores.com', // sender address
+            to: 'cruz.juanjose@buustores.com', // list of receivers
+            subject: req.body.subject, // Subject line
+            html: htmlToSend // html body
+        };
+
+        transporter.verify(function(error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                    return ReS(res, {descripcion: 'Correo enviado' });
+                });
+
+            }
+        });
+
+    });
+
+})   ;
+
 
 
  app.post('/send-activateacountemailforautomaticorder', function (req, res) {
@@ -233,7 +270,6 @@ console.log('Enviando correo al cliente o proveedor de su nueva orden');
 
 app.post('/send-newordertoproveedortest', function (req , res) {
 
-  
     console.log(JSON.stringify(req.body));
     bode = JSON.parse(JSON.stringify(req.body.usuariobuu));
     console.log('Enviadno correo al cliente de su pedido fue enviado ');

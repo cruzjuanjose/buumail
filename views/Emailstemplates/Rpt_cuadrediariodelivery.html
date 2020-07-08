@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>Reporte de Cuadre Diario</h1>
+
+<table>
+  <tr>
+    <th>Id Delivery</th>
+    <th>Fecha_ingreso</th>
+     <th>Id tienda</th>
+      <th>Tienda</th>
+       <th>Cobrar</th>
+       <th>Fecha Recoleccion</th>
+       <th>Fecha Entrega</th>
+       <th>Hora entrega</th>
+         <th>Notas de entrega</th>
+          <th>Monto recolectado</th>
+          <th>Diferencia</th>
+  </tr>
+  {{#each detalles}}
+  <tr>
+    <td>{{id_delivery}}</td>
+    <td>{{fecha_ingreso}}</td>
+    <td>{{Store_id}}</td>
+    <td>{{compañia_delivery}}</td>
+    <td>{{COD}}</td>
+    <td>{{fecha_recoleccion}}</td>
+    <td>{{Fecha_entrega}}</td>
+    <td>{{hora_entrega}}</td>
+    <td>{{notas}}</td>
+    <td>{{Montorecolectado}}</td>
+    <td>{{diferencia}}</td>
+  </tr>
+  {{/each}}
+</table>
