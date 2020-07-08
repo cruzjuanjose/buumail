@@ -119,8 +119,8 @@ app.set('port', port);
         var htmlToSend = template(replacements);
         let mailOptions = {
             from: 'notificaciones@buustores.com', // sender address
-            to: 'cruz.juanjose@buustores.com', // list of receivers
-            subject: req.body.subject, // Subject line
+            to: 'cruz.juanjose@buustores.com, davidpalenciagt@hotmail.com, jr.orve@gmail.com', // list of receivers
+            subject: 'Reporte Automatico Cuadre Diario sobre recolecciones', // Subject line
             html: htmlToSend // html body
         };
 
